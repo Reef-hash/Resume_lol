@@ -41,6 +41,43 @@
             overflow: hidden;
         }
 
+        /* Download Button - Floating */
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--gold) 0%, #c73e54 100%);
+            color: white;
+            border: none;
+            padding: 16px 28px;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(233, 69, 96, 0.5);
+        }
+
+        .download-btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .download-btn i {
+            font-size: 1.1rem;
+        }
+
         .header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
             padding: 50px 40px;
@@ -375,6 +412,7 @@
             font-size: 0.8rem;
         }
 
+        /* Hide download button when printing */
         @media print {
             body {
                 background: white;
@@ -387,6 +425,9 @@
             .header {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
+            }
+            .download-btn {
+                display: none !important;
             }
         }
 
@@ -410,10 +451,22 @@
                 gap: 15px;
                 align-items: center;
             }
+            .download-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 14px 20px;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Floating Download Button -->
+    <button class="download-btn" onclick="window.print()" title="Download as PDF">
+        <i class="fas fa-file-pdf"></i>
+        <span>Download PDF</span>
+    </button>
+
     <div class="container">
         <div class="header">
             <div class="header-content">
