@@ -1,65 +1,620 @@
-<!DOCTYPE html>
+
+html_code = '''<!DOCTYPE html>
 <html lang="ms">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MUHAMMAD ZUL HADIF BIN ZULKFILE - Resume</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Muhammad Zul Hadif - Biodata</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --gold: #e94560;
+            --light: #f5f5f5;
+            --text: #333;
+            --text-light: #666;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: rgba(233, 69, 96, 0.1);
+            border-radius: 50%;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.3);
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .header-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header-text .subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .header-text .tagline {
+            margin-top: 15px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        /* Contact Bar */
+        .contact-bar {
+            background: var(--accent);
+            padding: 18px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--white);
+            font-size: 0.85rem;
+        }
+
+        .contact-item i {
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .left-col, .right-col {
+            padding: 40px;
+        }
+
+        .left-col {
+            border-right: 1px solid #eee;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--gold);
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--gold);
+        }
+
+        /* Biodata Section */
+        .biodata-text {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 0.9rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .highlight-box p {
+            color: var(--text);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* Education */
+        .edu-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .edu-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .edu-school {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .edu-year {
+            color: var(--gold);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Experience */
+        .exp-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+            border-radius: 12px;
+            border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gold);
+        }
+
+        .exp-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .exp-year {
+            color: var(--gold);
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .exp-desc {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .skill-item i {
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
+        /* Languages */
+        .lang-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            margin-bottom: 12px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .lang-name {
+            font-weight: 500;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang-level {
+            display: flex;
+            gap: 5px;
+        }
+
+        .lang-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+        }
+
+        .lang-dot.active {
+            background: var(--gold);
+        }
+
+        /* References */
+        .ref-item {
+            padding: 18px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            color: var(--white);
+        }
+
+        .ref-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: var(--gold);
+        }
+
+        .ref-detail {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ref-detail i {
+            font-size: 0.75rem;
+            color: var(--gold);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            padding: 20px;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+        }
+
+        /* Print Styles */
         @media print {
-            body { -webkit-print-color-adjust: exact; margin: 0; }
-            .no-print { display: none !important; }
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .left-col {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header-text h1 {
+                font-size: 1.8rem;
+            }
+            .contact-bar {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
-
-<div class="max-w-4xl mx-auto bg-white shadow-xl my-8 overflow-hidden">
-
-    <!-- HEADER + PHOTO -->
-    <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white flex items-center px-10 py-8 gap-8">
-        <!-- GAMBAR PROFILE - GANTI URL INI SAHAJA -->
-        <div class="w-48 h-48 rounded-2xl overflow-hidden border-4 border-white flex-shrink-0 shadow-lg">
-            <img id="profile-img" 
-                 src="https://via.placeholder.com/400x400/1e2937/ffffff?text=Your+Photo" 
-                 alt="Muhammad Zul Hadif" 
-                 class="w-full h-full object-cover">
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="profile-img">
+                    <img src="profile.jpg" alt="Muhammad Zul Hadif" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\\'fas fa-user\\'></i>';">
+                </div>
+                <div class="header-text">
+                    <h1>Muhammad Zul Hadif</h1>
+                    <div class="subtitle">Bin Zulkfle</div>
+                    <div class="tagline">
+                        Seorang individu yang berhijrah dari kampung halaman ke bandar dengan matlamat untuk mendapatkan pekerjaan yang stabil. 
+                        Bersedia bekerja keras, belajar kemahiran baru dan menyumbang secara positif kepada organisasi.
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="flex-1">
-            <h1 class="text-4xl font-bold tracking-tighter">MUHAMMAD ZUL HADIF BIN ZULKFILE</h1>
-            <p class="text-slate-300 text-xl mt-1">Pekerja Berdedikasi • Bertanggungjawab • Cepat Belajar</p>
-            
-            <div class="flex gap-6 mt-6 text-sm">
-                <div>📱 +60 11-1293 2788</div>
-                <div>📱 +60 16-9360754</div>
-                <div>✉️ hadif3259@gmail.com</div>
+        <!-- Contact Bar -->
+        <div class="contact-bar">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+60 16-936 0754</span>
             </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>hadif3259@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>40A Kampung Batu 1, 18300 Gua Musang, Kelantan</span>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Column -->
+            <div class="left-col">
+                <!-- Biodata -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-user-circle"></i> Biodata</h2>
+                    <p class="biodata-text">
+                        Seorang individu yang berhijrah dari kampung halaman ke bandar dengan matlamat untuk mendapatkan pekerjaan yang stabil. 
+                        Bersedia bekerja keras, belajar kemahiran baru dan menyumbang secara positif kepada organisasi.
+                    </p>
+                    <div class="highlight-box">
+                        <p>
+                            <strong>Versi Fokus Keluarga:</strong> Merantau ke bandar untuk mencari rezeki yang lebih baik demi masa depan. 
+                            Seorang yang bertanggungjawab, berdisiplin dan cepat menyesuaikan diri dengan persekitaran kerja baru.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Pendidikan</h2>
+                    
+                    <div class="edu-item">
+                        <div class="edu-school">MAAHAD MUHAMMADI GUA MUSANG</div>
+                        <div class="edu-year"><i class="fas fa-calendar-alt"></i> 2021 - 2024</div>
+                    </div>
+                    
+                    <div class="edu-item">
+                        <div class="edu-school">SK Tengku Muhammad Fakhry Petra</div>
+                        <div class="edu-year"><i class="fas fa-calendar-alt"></i> 2015 - 2020</div>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-tools"></i> Kemahiran</h2>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="fas fa-file-word"></i>
+                            <span>Microsoft Word</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-file-excel"></i>
+                            <span>Microsoft Excel</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>Microsoft PowerPoint</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-palette"></i>
+                            <span>Canva</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-users"></i>
+                            <span>Bekerja Dalam Pasukan</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Boleh Overtime</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-col">
+                <!-- Experience -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-briefcase"></i> Pengalaman Kerja</h2>
+                    
+                    <div class="exp-item">
+                        <div class="exp-title"><i class="fas fa-utensils"></i> Catering Kenduri Kahwin</div>
+                        <span class="exp-year">Januari 2025 - Mac 2025</span>
+                        <div class="exp-desc">
+                            Menjaga stok makanan untuk ditop up di dalam tempat makanan yang telah dimasak dan membersihkan meja untuk orang duduk 
+                            supaya tidak kotor apabila duduk di meja yang kotor supaya selesa dan nyaman untuk duduk di kerusi yang disediakan. 
+                            Selain itu juga menjaga top up minuman supaya air tidak berkurang.
+                        </div>
+                    </div>
+                    
+                    <div class="exp-item">
+                        <div class="exp-title"><i class="fas fa-store"></i> Menjaga Kedai Runcit</div>
+                        <span class="exp-year">Mac 2025 - April 2025</span>
+                        <div class="exp-desc">
+                            Menjaga kedai runcit untuk orang membeli barang keperluan di rumah supaya dapat memudahkan customer untuk membeli 
+                            barang apa yang diperlukan di tempat kerja sebelum dilepaskan barang yang telah diambil. 
+                            Juga menge-top up barang yang berkurangan di dalam kedai runcit dan menjaga kaunter supaya buat pembayaran.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-language"></i> Bahasa</h2>
+                    
+                    <div class="lang-item">
+                        <span class="lang-name"><i class="fas fa-flag"></i> Bahasa Melayu</span>
+                        <div class="lang-level">
+                            <div class="lang-dot active"></div>
+                            <div class="lang-dot active"></div>
+                            <div class="lang-dot active"></div>
+                            <div class="lang-dot active"></div>
+                            <div class="lang-dot active"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="lang-item">
+                        <span class="lang-name"><i class="fas fa-globe"></i> Bahasa Inggeris</span>
+                        <div class="lang-level">
+                            <div class="lang-dot active"></div>
+                            <div class="lang-dot active"></div>
+                            <div class="lang-dot active"></div>
+                            <div class="lang-dot"></div>
+                            <div class="lang-dot"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- References -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-address-book"></i> Rujukan</h2>
+                    
+                    <div class="ref-item">
+                        <div class="ref-name">Muhammad Zul Hadif bin Zulkfle</div>
+                        <div class="ref-detail"><i class="fas fa-phone"></i> +60 11-1293 2788</div>
+                        <div class="ref-detail"><i class="fas fa-envelope"></i> hadif3259@gmail.com</div>
+                    </div>
+                    
+                    <div class="ref-item">
+                        <div class="ref-name">Wan Akma Zalida binti Wan Ngah</div>
+                        <div class="ref-detail"><i class="fas fa-phone"></i> +60 17-954 6405</div>
+                        <div class="ref-detail"><i class="fas fa-envelope"></i> wanakma53@gmail.com</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <i class="fas fa-heart" style="color: var(--gold);"></i> Disediakan dengan penuh kesungguhan untuk masa depan yang lebih baik
         </div>
     </div>
+</body>
+</html>'''
 
-    <div class="grid grid-cols-12 gap-8 p-10">
+with open('/mnt/agents/output/biodata_zul_hadif.html', 'w', encoding='utf-8') as f:
+    f.write(html_code)
 
-        <!-- LEFT COLUMN -->
-        <div class="col-span-4 space-y-8 text-sm">
-
-            <!-- BIODATA -->
-            <div>
-                <h2 class="uppercase text-xs font-semibold tracking-widest border-b pb-1 mb-3 text-slate-500">BIODATA</h2>
-                <p class="leading-relaxed text-gray-700">
-                    Saya adalah seorang individu yang berdedikasi dan bertanggungjawab, berhijrah dari kampung halaman ke bandar dengan matlamat untuk mendapatkan pekerjaan yang stabil. Bersedia bekerja keras, mempelajari kemahiran baharu serta menyumbang secara positif kepada organisasi.
-                </p>
-            </div>
-
-            <!-- VERSI FOKUS KELUARGA -->
-            <div>
-                <h2 class="uppercase text-xs font-semibold tracking-widest border-b pb-1 mb-3 text-slate-500">VERSI FOKUS KELUARGA</h2>
-                <p class="leading-relaxed text-gray-700">
-                    Merantau ke bandar bagi mencari rezeki yang lebih baik demi masa depan keluarga. Seorang yang bertanggungjawab, berdisiplin dan cepat menyesuaikan diri dengan persekitaran kerja baharu.
-                </p>
-            </div>
-
-            <!-- SKILLS -->
-            <div>
-                <h2 class="uppercase text-xs font-semibold tracking-widest border-b pb-1 mb-3 text-slate-500">SKILLS</h2>
-                <ul class
+print("✅ File HTML berjaya dihasilkan!")
+print("📁 Lokasi: /mnt/agents/output/biodata_zul_hadif.html")
+print("\n📋 Panduan Penggunaan:")
+print("1. Upload gambar profile dengan nama 'profile.jpg' di root folder GitHub repo")
+print("2. Rename file ini kepada 'index.html'")
+print("3. Push ke GitHub dan enable GitHub Pages")
+print("4. Untuk download PDF, buka website > Ctrl+P > Save as PDF")
